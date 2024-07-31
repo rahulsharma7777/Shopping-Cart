@@ -7,6 +7,7 @@ type PropsType={
 }
 const Header = ({viewCart,setViewCart}:PropsType ) => {
 
+     console.log(" headrer")
     const {totalItems,totalPrice}=useCart()
     const content=(
         <header className='header '>

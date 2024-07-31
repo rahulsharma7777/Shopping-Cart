@@ -9,7 +9,7 @@ function App() {
 
    const content=(
     <>
-    <Header viewCart={viewCart} setViewCard={setViewCart}></Header>
+    <Header viewCart={viewCart} setViewCart={setViewCart}></Header>
     {PageContent}
     <Footer viewCart={viewCart}/>
     </>
