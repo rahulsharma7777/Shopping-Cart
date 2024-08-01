@@ -1,4 +1,4 @@
-import { Children, createContext, ReactElement, useMemo, useReducer } from "react";
+import { createContext, ReactElement, useMemo, useReducer } from "react";
 
 export type CartItemType = {
   sku: string;
@@ -41,6 +41,7 @@ const reducer = (
       return { ...state, cart: [...filteredCart, { sku, name, price, qty }] };
     }
     case REDUCER_ACTION_TYPE.REMOVE: {
+      console.log(" here is action payload",action.payload)
       if (!action.payload) {
         throw new Error(" action payload missing in Remove a ction");
       }
@@ -48,7 +49,7 @@ const reducer = (
       const filteredCart: CartItemType[] = state.cart.filter(
         (item) => item.sku != sku
       );
-      return { ...state, cart: { ...filteredCart } };
+      return { ...state, cart: [ ...filteredCart ] };
     }
     case REDUCER_ACTION_TYPE.QUANTITY: {
       if (!action.payload) {
@@ -81,7 +82,8 @@ const useCartContext=(initCartState:CartStateType)=>{
         return REDUCER_ACTION_TYPE
 },[]);
 
-const totalItems=state.cart.reduce   ((previousValue,cartItem)=>{
+console.log(" here is state",state)
+const totalItems=state.cart.reduce((previousValue,cartItem)=>{
     return previousValue+cartItem.qty
 },0)
 const totalPrice = new Intl.NumberFormat('en-US', {

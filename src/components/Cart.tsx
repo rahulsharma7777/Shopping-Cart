@@ -1,4 +1,4 @@
-import React from 'react'
+
 import useCart  from '../hooks/useCart'
 import { useState } from 'react'
 import CartIemLine from './CartIemLine'
@@ -11,7 +11,7 @@ const Cart = () => {
     dispatch({type:REDUCER_ACTIONS.SUBMIT})
     setConfirm(true)
   }
-  const pageContent=confirm ?<h2>Thanl you for your Order</h2>:<>
+  const pageContent=confirm ?<h2>Thank you for your Order</h2>:<>
    <h2 className='offscreen'>Cart</h2>
    <ul className='cart'>
     {cart.map(item=>{

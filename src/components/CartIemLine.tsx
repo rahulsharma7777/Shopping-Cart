@@ -30,6 +30,7 @@ const CartItemLine = ({ item, dispatch, REDUCER_ACTION }: PropsType) => {
     });
   };
   const onRemoveFromCart = () => {
+    console.log("control reached here",item)
     dispatch({ type: REDUCER_ACTION.REMOVE, payload: item });
   };
   const content = (
@@ -74,12 +75,14 @@ const CartItemLine = ({ item, dispatch, REDUCER_ACTION }: PropsType) => {
 
   return content;
 };
-function areItemsEqual({item:prevItem}:PropsType,{item:nextItem}:PropsType)
+ 
+  function areItemsEqual({item:prevItem}:PropsType,{item:nextItem}:PropsType)
 {
-    return Object.keys(prevItem).every(key=>{
-             return prevItem[key as keyof  CartItemType]===nextItem[key as keyof CartItemType]
-
-    })&& prevItem===nextItem
+  return Object.keys(prevItem).every(key=>{
+    prevItem[key as keyof CartItemType]===nextItem[key as keyof CartItemType]
+  }) 
 }
-const MemoizedCardLineItem=memo<typeof CartItemLine >
+
+
+const MemoizedCardLineItem=memo<typeof CartItemLine >(CartItemLine, areItemsEqual)
 export default MemoizedCardLineItem;
